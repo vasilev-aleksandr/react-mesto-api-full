@@ -8,9 +8,9 @@ export const validatorData = {
 }
 
 export const configApi = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-21',
+  url: 'http://localhost:3000',
   headers: {
-    authorization: '5272ec4f-012a-4dd0-babb-fcf2aac8eb04',
+    authorization: 'https://api.vasilev.students.nomoredomains.club',
     'Content-Type': 'application/json'
   }
 }

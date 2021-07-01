@@ -14,12 +14,13 @@ const auth = require('./middlewares/auth');
 const { validateLogin, validateAddUser } = require('./middlewares/requestValidation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 4000 } = process.env;
 const app = express();
 
 const whitelist = [
-  'https://vasilev.students.nomoredomains.club',
-  'http://vasilev.students.nomoredomains.club',
+  'http://localhost:3000',
+  'https://api.vasilev.students.nomoredomains.club',
+  'http://api.vasilev.students.nomoredomains.club',
 ];
 const corsOptions = {
   origin(origin, callback) {
