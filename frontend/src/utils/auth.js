@@ -52,7 +52,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  url: 'https://vasilev.students.nomoredomains.club/',
+  url: 'https://api.vasilev.students.nomoredomains.club',
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'

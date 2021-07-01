@@ -1,10 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const cors = require('cors');
 const cards = require('./routes/cards');
 const users = require('./routes/users');
 const { login, addUser } = require('./controllers/users');
@@ -14,6 +16,11 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();
+
+const allowedCors = [
+  'https://vasilev.students.nomoredomains.club',
+  'http://vasilev.students.nomoredomains.club',
+];
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
@@ -30,6 +37,14 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  next();
+});
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
