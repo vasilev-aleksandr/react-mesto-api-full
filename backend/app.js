@@ -10,7 +10,7 @@ const users = require('./routes/users');
 const { login, addUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { validateLogin, validateAddUser } = require('./middlewares/requestValidation');
-const { requestLogger, errorLogger } = require('./middlewares/logger'); 
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();

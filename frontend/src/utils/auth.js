@@ -52,7 +52,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  url: 'https://auth.nomoreparties.co',
+  url: 'https://vasilev.students.nomoredomains.club/',
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'

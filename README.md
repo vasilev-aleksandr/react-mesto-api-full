@@ -4,3 +4,5 @@ react-mesto-api-full
 frontend domain: https://vasilev.students.nomoredomains.club/
 
 backend domain: https://api.vasilev.students.nomoredomains.club/
+
+public server IP: 178.154.225.107
