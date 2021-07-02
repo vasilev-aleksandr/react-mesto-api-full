@@ -52,11 +52,13 @@ class Auth {
 }
 
 const auth = new Auth({
-  url: 'https://api.vasilev.students.nomoredomains.club',
+  url: 'http://localhost:4000',
   headers: {
-    'Content-Type': 'application/json'
+    'Accept': 'application/json', 
+    'Content-Type': 'application/json' 
   }, 
 })
+
 
 export default auth
 

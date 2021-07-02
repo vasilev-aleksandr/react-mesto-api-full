@@ -18,9 +18,10 @@ const { PORT = 4000 } = process.env;
 const app = express();
 
 const whitelist = [
+  'http://localhost:4000',
   'http://localhost:3000',
-  'https://api.vasilev.students.nomoredomains.club',
-  'http://api.vasilev.students.nomoredomains.club',
+  'https://vasilev.students.nomoredomains.club',
+  'http://vasilev.students.nomoredomains.club',
 ];
 const corsOptions = {
   origin(origin, callback) {
@@ -79,7 +80,7 @@ app.use((err, req, res, next) => {
     .status(statusCode)
     .send({
       message: statusCode === 500
-        ? 'На сервере произошла ошибка =('
+        ? 'На сервере произошла ошибка'
         : message,
     });
   next();
