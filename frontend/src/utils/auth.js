@@ -54,6 +54,7 @@ class Auth {
 const auth = new Auth({
   url: 'http://localhost:4000',
   headers: {
+    authorization: '56ef87ac-ca8d-4cfa-bbaf-aacafdd87bde',
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   }, 
