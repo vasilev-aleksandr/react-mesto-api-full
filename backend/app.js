@@ -17,26 +17,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT = 4000 } = process.env;
 const app = express();
 
-const whitelist = [
-  'http://localhost:4000',
-  'https://localhost:4000',
-  'https://vasilev.students.nomoredomains.club',
-  'http://vasilev.students.nomoredomains.club',
-];
-
-const corsOptions = {
-  origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
