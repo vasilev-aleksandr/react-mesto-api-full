@@ -54,7 +54,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  url: 'http://localhost:4000',
+  url: 'https://api.vasilev.students.nomoredomains.club',
   headers: {
     authorization: '56ef87ac-ca8d-4cfa-bbaf-aacafdd87bde',
     'Accept': 'application/json',
