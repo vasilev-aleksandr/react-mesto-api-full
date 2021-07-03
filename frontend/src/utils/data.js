@@ -8,7 +8,7 @@ export const validatorData = {
 }
 
 export const configApi = {
-  url: 'http://localhost:4000',
+  url: 'https://api.vasilev.students.nomoredomains.club',
   headers: {
     'Content-Type': 'application/json'
   }

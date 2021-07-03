@@ -20,7 +20,7 @@ function Main(props) {
     <button className="profile__add-button button" type="button" onClick={props.onAddPlace}></button>
     </section>
     <section className="places">
-    {props.cards.map((card) => (
+    {props.cards.reverse().map((card) => (
           <Card
             card={card}
             key={card._id}

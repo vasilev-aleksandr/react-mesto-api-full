@@ -5,7 +5,7 @@ const Forbidden = require('../errors/forbidden-err');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .then((cards) => res.status(200).send(cards))
+    .then((cards) => res.status(200).send(cards.reverse()))
     .catch(next);
 };
 
@@ -18,7 +18,7 @@ module.exports.createCard = (req, res, next) => {
     })
     .catch((err) => {
       if (err && err.name === 'ValidationError') {
-        throw new BadRequestError({ message: `Указаны некорректные данные при создании карточки: ${err.message}` });
+        throw new BadRequestError(`Указаны некорректные данные при создании карточки: ${err.message}`);
       } else {
         next(err);
       }
@@ -30,7 +30,7 @@ module.exports.deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
     .then((card) => {
       if (!card) {
-        throw new NotFoundError({ message: `Карточка с указанным _id не найдена: ${req.params.cardId}` });
+        throw new NotFoundError(`Карточка с указанным _id не найдена: ${req.params.cardId}`);
       }
       if (card.owner.toString() !== req.user._id) {
         throw new Forbidden('Доступ запрещен');
@@ -56,7 +56,7 @@ module.exports.likeCard = (req, res, next) => {
   )
     .then((card) => {
       if (!card) {
-        throw new NotFoundError({ message: `Карточка с указанным _id не найдена: ${req.params.cardId}` });
+        throw new NotFoundError(`Карточка с указанным _id не найдена: ${req.params.cardId}`);
       }
       res.send({ data: card });
     })
@@ -77,7 +77,7 @@ module.exports.dislikeCard = (req, res, next) => {
   )
     .then((card) => {
       if (!card) {
-        throw new NotFoundError({ message: `Карточка с указанным _id не найдена: ${req.params.cardId}` });
+        throw new NotFoundError(`Карточка с указанным _id не найдена: ${req.params.cardId}`);
       }
       res.send({ data: card });
     })

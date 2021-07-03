@@ -51,7 +51,7 @@ export const METHOD = {
 }
 
 export const CONFIG_API = {
-  url: 'http://localhost:4000',
+  url: 'https://api.vasilev.students.nomoredomains.club',
   headers: {
     'Content-Type': 'application/json'
   }

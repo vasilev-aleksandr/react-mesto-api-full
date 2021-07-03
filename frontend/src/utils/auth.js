@@ -38,21 +38,23 @@ class Auth {
     })
   };
 
-  checkToken(token){
+  checkToken(){
     return fetch(`${this.url}/users/me`, {
       method: METHOD.GET,
       headers: {
         ...this.headers,
-        'Authorization': `Bearer ${token}`,
+        authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
     .then(this._handleResponse)
-    .then(data => data)
+    .then((data) => {
+      return data;
+  })
   }
 }
 
 const auth = new Auth({
-  url: 'http://localhost:4000',
+  url: 'https://api.vasilev.students.nomoredomains.club',
   headers: {
     authorization: '56ef87ac-ca8d-4cfa-bbaf-aacafdd87bde',
     'Accept': 'application/json',

@@ -18,7 +18,7 @@ module.exports.getUser = (req, res, next) => {
   User.findById(req.params.userId)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError({ message: `Пользователь по указанному _id не найден: ${req.params.userId}` });
+        throw new NotFoundError(`Пользователь по указанному _id не найден: ${req.params.userId}`);
       }
       res.send({ message: user });
     })
@@ -35,12 +35,12 @@ module.exports.getUser = (req, res, next) => {
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
-  User.findById(req.params.userId)
+  User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        throw new NotFoundError({ message: `Пользователь по указанному _id не найден: ${req.params.userId}` });
+        throw new NotFoundError('Пользователь по указанному _id не найден');
       }
-      res.send({ message: user });
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ObjectId' || err.name === 'CastError') {
@@ -70,7 +70,7 @@ module.exports.addUser = (req, res, next) => {
     }))
     .catch((err) => {
       if (err.name === 'MongoError' || err.code === 11000) {
-        throw new UnauthorizedErr({ message: 'Пользователь с таким email уже зарегистрирован' });
+        throw new UnauthorizedErr('Пользователь с таким email уже зарегистрирован');
       } else if (err.name === 'ValidationError') {
         throw new BadRequestError('Некорректная информация');
       } else {
@@ -92,7 +92,7 @@ module.exports.updateUser = (req, res, next) => {
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError({ message: `Пользователь по указанному _id не найден: ${req.params.userId}` });
+        throw new NotFoundError(`Пользователь по указанному _id не найден: ${req.params.userId}`);
       }
 
       res.send({ data: user });
@@ -121,7 +121,7 @@ module.exports.updateAvatar = (req, res, next) => {
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError({ message: `Пользователь по указанному _id не найден: ${req.params.userId}` });
+        throw new NotFoundError(`Пользователь по указанному _id не найден: ${req.params.userId}`);
       }
 
       res.send({ data: user });
@@ -148,13 +148,7 @@ module.exports.login = (req, res, next) => {
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
-      res
-        .cookie('jwt', token, {
-          maxAge: 3600000 * 24 * 7,
-          httpOnly: true,
-          sameSite: true,
-        })
-        .send({ message: 'Успешная авторизация' });
+      res.send({ token });
     })
     .catch(next);
 };
