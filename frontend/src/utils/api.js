@@ -105,7 +105,7 @@ class Api {
 
 
 const api = new Api ({
-  url: 'https://api.vasilev.students.nomoredomains.club',
+  url: 'http://localhost:4000',
   headers: {
     authorization: '56ef87ac-ca8d-4cfa-bbaf-aacafdd87bde',
     'Content-Type': 'application/json'
