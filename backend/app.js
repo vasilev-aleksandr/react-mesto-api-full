@@ -54,7 +54,7 @@ app.use('/cards', auth, cards);
 app.use('/users', auth, users);
 
 app.all('/*', () => {
-  throw new NotFoundError('Запрашиваемый ресурс не найден');
+  throw new NotFoundError({ message: 'Запрашиваемый ресурс не найден' });
 });
 
 app.use(errorLogger);
