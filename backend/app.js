@@ -53,7 +53,7 @@ app.post('/signup', validateAddUser, addUser);
 app.use('/cards', auth, cards);
 app.use('/users', auth, users);
 
-app.all('/*', () => {
+app.use('/*', () => {
   throw new NotFoundError({ message: 'Запрашиваемый ресурс не найден' });
 });
 
