@@ -53,6 +53,10 @@ app.post('/signup', validateAddUser, addUser);
 app.use('/cards', auth, cards);
 app.use('/users', auth, users);
 
+app.get('/*', () => {
+  throw new NotFoundError('Запрашиваемый ресурс не найден');
+});
+
 app.use(errorLogger);
 
 app.use(errors());
@@ -67,10 +71,6 @@ app.use((err, req, res, next) => {
         : message,
     });
   next();
-});
-
-app.get('*', () => {
-  throw new NotFoundError('Запрашиваемый ресурс не найден');
 });
 
 app.listen(PORT, () => {
