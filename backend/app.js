@@ -12,6 +12,7 @@ const users = require('./routes/users');
 const { login, addUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { validateLogin, validateAddUser } = require('./middlewares/requestValidation');
+const NotFoundError = require('./errors/not-found-err');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
@@ -51,6 +52,10 @@ app.post('/signin', validateLogin, login);
 app.post('/signup', validateAddUser, addUser);
 app.use('/cards', auth, cards);
 app.use('/users', auth, users);
+
+app.all('/*', () => {
+  throw new NotFoundError('Запрашиваемый ресурс не найден');
+});
 
 app.use(errorLogger);
 
