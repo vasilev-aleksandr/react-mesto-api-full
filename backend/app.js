@@ -9,11 +9,11 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const cards = require('./routes/cards');
 const users = require('./routes/users');
+const routes = require('./routes/index');
 const { login, addUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { validateLogin, validateAddUser } = require('./middlewares/requestValidation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const routes = require('./routes');
 
 const { PORT = 3000 } = process.env;
 const app = express();
